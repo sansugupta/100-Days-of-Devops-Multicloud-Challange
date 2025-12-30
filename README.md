@@ -1,25 +1,18 @@
-# ☁️ 100 Days of Cloud: The SRE Perspective
+# ☁️ 100 Days of Cloud: The SRE Journey
 
-[![KodeKloud](https://img.shields.io/badge/Challange-KodeKloud-blue?style=for-the-badge&logo=kubernetes)](https://kodekloud.com/)
-[![Status](https://img.shields.io/badge/Status-In%20Progress-orange?style=for-the-badge)]()
-[![Role](https://img.shields.io/badge/Perspective-Senior%20SRE-red?style=for-the-badge)]()
+> **Live Documentation Site:** [Read the full journey on GitBook](<INSERT_YOUR_GITBOOK_LINK_HERE>) 
+> *(This is the best way to view the diagrams and daily logs)*
 
-## 📖 About This Repository
+## 🎯 Current Status
+![Day](https://img.shields.io/badge/Current_Day-01-blue?style=for-the-badge) 
+![Topic](https://img.shields.io/badge/Focus-Hybrid_Cloud_&_Linux-orange?style=for-the-badge)
 
-This is not just a collection of completed labs. It is a **technical journal** documenting my journey through the [KodeKloud 100 Days of Cloud](https://kodekloud.com/100-days-of-cloud) challenge.
+## 📖 What is this?
+A Senior SRE's architectural journal. I am documenting production-grade solutions for Cloud, Kubernetes, and IaC.
 
-As a **Senior Site Reliability Engineer (SRE)** with experience in eBPF, multi-region Kubernetes, and large-scale cloud architecture, I am approaching these tasks with a **production-first mindset**.
+## 🏆 Featured Implementations (Highlights)
+*Instead of listing every day, I list the major milestones here:*
 
-For every task, I ask:
-> *"How would I implement this in a regulated enterprise environment serving 1M+ users?"*
-
-## 🏗️ The "SRE Lens"
-In this repository, you will not find simple "click-ops" solutions. Instead, I focus on:
-
-*   **Infrastructure as Code:** Replacing manual CLI commands with **Terraform** and **Ansible**.
-*   **Security Hardening:** Implementing Least Privilege, strict IAM roles, and OS-level hardening (SELinux, non-interactive shells).
-*   **Automation:** Scripting verification steps and repetitive tasks.
-*   **Architectural Trade-offs:** Analyzing *why* we choose a specific resource (e.g., SSM vs. SSH, NLB vs. ALB).
 
 ## 🛠️ Technology Stack
 
@@ -30,18 +23,16 @@ In this repository, you will not find simple "click-ops" solutions. Instead, I f
 | **IaC & Config** | ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white) ![Ansible](https://img.shields.io/badge/Ansible-EE0000?style=flat-square&logo=ansible&logoColor=white) |
 | **OS & Scripting** | ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black) ![Bash](https://img.shields.io/badge/Shell_Scripting-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white) |
 
-## 📂 Repository Structure
 
-Each day is isolated into its own directory containing the **Task Documentation**, **Source Code**, and **Architecture Diagrams**.
+| Day | Milestone | Tech Stack |
+| :--- | :--- | :--- |
+| **Day 01** | **Hybrid Cloud Identity** | Terraform, AWS, Azure, Linux Hardening |
+| **Day 15** | *Coming Soon* | Docker Networking Deep Dive |
+| **Day 40** | *Coming Soon* | Kubernetes Ingress & TLS |
 
-```text
-100-days-of-cloud/
-│
-├── Day-01-hybrid-cloud-identity/    <-- Multi-Cloud Identity & Linux Hardening
-│   ├── terraform/                   <-- IaC Implementations
-│   ├── screenshots/                 <-- Proof of Execution
-│   └── README.md                    <-- Detailed SRE Analysis
-│
-├── Day-02-.../
-│
-└── README.md                        <-- Working On it.
+## 📂 Repository Navigation
+*   **[Day 01: Hybrid Cloud Identity](./Day-01-hybrid-cloud-identity)** - Terraform `tls` provider, AWS/Azure CLI, `nologin` shells.
+*   *(I will only add links here for the most recent 5 days to keep it clean, or use the GitBook link above for history)*
+
+---
+*Connect with me on [LinkedIn](YOUR_LINKEDIN_URL) for daily updates.*
