@@ -1,18 +1,48 @@
-# ☁️ 100 Days of Cloud: The SRE Perspective
+# Day 01: Hybrid Cloud Identity & Linux Hardening
 
-[![KodeKloud](https://img.shields.io/badge/Challenge-KodeKloud-blue?style=for-the-badge&logo=kubernetes)](https://kodekloud.com/)
-[![Status](https://img.shields.io/badge/Status-In%20Progress-orange?style=for-the-badge)]()
-[![Role](https://img.shields.io/badge/Perspective-Senior%20SRE-red?style=for-the-badge)]()
+## 📋 Executive Summary
+**Task:** Establish secure access foundations for a hybrid cloud migration (AWS & Azure) and implement OS-level security hardening for on-premise application servers.
 
-## 📖 About This Repository
-A technical journal documenting my journey through the **KodeKloud 100 Days of Cloud** challenge. As a Senior SRE, I approach each task with a focus on **automation, security hardening, and production scalability**.
+**Artifacts in this folder:**
+*   [`scripts/`](./scripts/): Shell scripts containing the CLI commands used for AWS, Azure, and Linux.
+*   [`terraform/`](./terraform/): Infrastructure as Code to generate keys programmatically.
 
-## 🚀 Progress Log
+## 🛠️ Implementation Details
 
-| Day | Topic | Key Concepts | Status | Link to Details |
-| :---: | :--- | :--- | :---: | :---: |
-| **01** | **Hybrid Cloud Identity** | AWS CLI, Azure CLI, Terraform `tls` Provider, Linux Hardening | ✅ | [Day 01 Details](./Day-01-hybrid-cloud-identity/README.md) |
-| 02 | *Pending* | ... | ⏳ | *Coming Soon* |
+### 1. AWS Access Setup (CLI)
+**Goal:** Create a Key Pair `xfusion-kp` in `us-east-1`.
+**Command File:** [`scripts/aws-migration-task.sh`](./scripts/aws-migration-task.sh)
+**SRE Note:** We extracted the key material immediately to a secured `.pem` file.
 
-## 🤝 Connect
-Follow my daily updates on [LinkedIn](https://www.linkedin.com/).
+### 2. Azure Access Setup (CLI)
+**Goal:** Create an SSH Key Resource `devops-kp` in `eastus`.
+**Command File:** [`scripts/azure-migration-task.sh`](./scripts/azure-migration-task.sh)
+**SRE Note:** Used Device Code Flow (`az login`) to bypass MFA/Conditional Access restrictions common in enterprise tenants.
+
+### 3. Linux System Hardening
+**Goal:** Create service accounts with specific security constraints.
+**Command File:** [`scripts/linux-user-hardening.sh`](./scripts/linux-user-hardening.sh)
+*   **User `james`:** Assigned `/sbin/nologin` to prevent interactive shell access.
+*   **User `anita`:** Assigned static UID `1743` to ensure NFS compatibility across the cluster.
+
+### 4. Infrastructure as Code (Terraform)
+**Goal:** Generate `devops-kp` using Terraform `tls` provider.
+**Code:** [`terraform/main.tf`](./terraform/main.tf)
+**Observation:** Terraform simplifies state management but requires careful handling of the `tfstate` file since it contains the unencrypted private key.
+
+## 🚀 Architecture
+
+```mermaid
+flowchart TD
+    Admin[SRE Admin] -->|CLI| AWS[AWS: xfusion-kp]
+    Admin -->|CLI| Azure[Azure: devops-kp]
+    Admin -->|Terraform| TF[Terraform Engine]
+    
+    TF -->|Generates| TLS[RSA Key]
+    TLS -->|Uploads Public Key| AWS_TF[AWS: devops-kp]
+    TLS -->|Saves Private Key| Local[Local .pem File]
+
+    subgraph "Linux Hardening"
+        User1[James: /sbin/nologin]
+        User2[Anita: UID 1743]
+    end
